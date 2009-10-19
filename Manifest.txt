@@ -1,0 +1,10 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/virtualearth.rb
+lib/virtualearth/imagery.rb
+lib/virtualearth/service.rb
+test/test_virtualearth.rb
+test/data/48c82f095860f2d9917a36550caf9bae
