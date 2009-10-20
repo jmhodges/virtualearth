@@ -26,8 +26,9 @@ class MockSoap
   def initialize(opts)
     self.possible_responses = {}
     self.extra_namespaces = opts[:extra_namespaces]
-    Handsoap::Http.drivers[:mock_soap] = CachedFileMockHttp.new(self)
+    Handsoap::Http.drivers[:mock_soap] = CachedFileMockHttp
     Handsoap.http_driver = :mock_soap
+    CachedFileMockHttp.mock_soap = self
   end
   
   def for(soap_operation)
@@ -129,17 +130,17 @@ class MockSoap
   end
   
   class CachedFileMockHttp
-    def initialize(mock_soap)
-      @mock = mock_soap
+    class << self
+      attr_accessor :mock_soap
     end
-    
-    def load!; true; end
+
+    def self.load!; true; end
     
     def send_http_request(request)
-      @mock.read(request)
+      self.class.mock_soap.read(request)
     end
   end
-  
+
   class MissingCacheFile < StandardError;
     def initialize(msg=nil)
       msg ||= "The cached file does not exist for this request. "+
