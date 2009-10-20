@@ -8,7 +8,7 @@ end
 
 MockSoap.cache_dir = File.dirname(__FILE__) + '/data'
 
- Handsoap::Service.logger = File.open('foo.txt','w')
+# Handsoap::Service.logger = File.open('foo.txt','w')
 
 class TestVirtualEarth < Test::Unit::TestCase
   
