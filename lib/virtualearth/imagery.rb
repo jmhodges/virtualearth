@@ -1,5 +1,5 @@
 module VirtualEarth
-  class Imagery < Service
+  class Imagery < Handsoap::Service
     endpoint(:uri =>
              'http://dev.virtualearth.net/webservices/v1/imageryservice/imageryservice.svc',
              :version => 1)
