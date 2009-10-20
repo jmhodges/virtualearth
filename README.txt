@@ -1,26 +1,31 @@
 = virtualearth
 
-* FIX (url)
+* http://github.com/jmhodges/virtualearth
 
 == DESCRIPTION:
 
-FIX (describe your package)
+Talk to the VirtualEarth SOAP API.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* Only talks to half the API and does so only half-well
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+    VirtualEarth.get_map_uri(client_token,
+                             :zoom => 2
+                             :center_latitude => 34.123,
+                             :center_longitude => -118.2685)
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* Handsoap
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+Either:
+* sudo gem install virtualearth
+* rip install git://github.com/jmhodges/virtualearth
 
 == LICENSE:
 
