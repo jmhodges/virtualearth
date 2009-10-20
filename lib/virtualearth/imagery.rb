@@ -27,7 +27,7 @@ module VirtualEarth
 
             io.add('imag:ImageType', opts[:image_type]) if opts[:image_type]
             io.add('imag:ZoomLevel', opts[:zoom]) if opts[:zoom]
-
+            io.add('imag:Style', opts[:style]) if opts[:style]
             if opts[:layers]
               io.add('imag:DisplayLayers') do |dl|
                 opts[:layers].each{|layer| dl.add('arr:string', layer) }
@@ -60,9 +60,9 @@ module VirtualEarth
     end
 
     def parse_map_uri(xml)
-      { :url => xml.
+      { :uri => xml.
         xpath('//a:Uri[1]',
-                          'a' => "http://dev.virtualearth.net/webservices/v1/imagery").
+              'a' => "http://dev.virtualearth.net/webservices/v1/imagery").
         inner_text
       }
     end

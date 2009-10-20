@@ -66,7 +66,7 @@ class MockSoap
 
   def check_number_of_responses_found(found_responses)
     if found_responses.empty?
-      raise "None of the mocked out responses matched"
+      raise "The xml sent out does not match up with the queries you wanted mocked."
     end
 
     if found_responses.size > 1
