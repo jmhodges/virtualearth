@@ -25,7 +25,7 @@ Talk to the VirtualEarth SOAP API.
 
 Either:
 * sudo gem install virtualearth
-* rip install git://github.com/jmhodges/virtualearth
+* rip install git://github.com/jmhodges/virtualearth.git
 
 == LICENSE:
 
