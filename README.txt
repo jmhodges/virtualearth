@@ -19,7 +19,7 @@ Talk to the VirtualEarth SOAP API.
 
 == REQUIREMENTS:
 
-* Handsoap
+* handsoap v1.1.1
 
 == INSTALL:
 
