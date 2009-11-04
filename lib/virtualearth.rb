@@ -5,5 +5,5 @@ require 'cgi'
 
 require 'virtualearth/imagery'
 module VirtualEarth
-  VERSION = '0.1.0'
+  VERSION = '0.1.1'
 end

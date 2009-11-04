@@ -48,6 +48,7 @@ module VirtualEarth
         pushpins.each do |pin|
           pps.add('com:Pushpin') do |pp|
             pp.add('com:IconStyle', pin[:icon_style]) if pin[:icon_style]
+            pp.add('com:Label', pin[:label]) if pin[:label]
             if pin[:latitude] && pin[:longitude]
               pp.add('com:Location') do |loc|
                 loc.add('com:Latitude', pin[:latitude])

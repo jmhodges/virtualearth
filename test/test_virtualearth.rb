@@ -7,7 +7,6 @@ if ENV['cache_mode'] == 'store_new'
 end
 
 MockSoap.cache_dir = File.dirname(__FILE__) + '/data'
-
 # Handsoap::Service.logger = File.open('foo.txt','w')
 
 class TestVirtualEarth < Test::Unit::TestCase
@@ -26,7 +25,7 @@ class TestVirtualEarth < Test::Unit::TestCase
 
   def test_get_map_uri
     # Token gathered from a MapPoint::Common.get_client_token call.
-    token = "UijMKm4B2wvO7U_UKU9MydBAs_Wm_UCelIB41Lpt5A9G3LG_7Ix7KgEwhbeNgvm7j6vYyyyf-FMwQEMGYWpGFw2"
+    token = "-0qdmPhQUuZXB-vGj8ljhYc6QBLq3Sclyts2LwnwaTuPWgiov1Yr56sjVnzCknRNaa78G8EKVy-eXjomy-0_Cw2"
     mock_soap.for('GetMapUri').
       with_xpath('//imag:Center/com:Latitude/text()' => '34.113033').
       with_xpath('//imag:Center/com:Longitude/text()' => '-118.2685').
@@ -37,6 +36,8 @@ class TestVirtualEarth < Test::Unit::TestCase
       with_xpath('//imag:ImageType/text()' => 'Png').
       with_xpath('//imag:Pushpins/com:Pushpin/com:Location/com:Latitude/text()' => '34.155217').
       with_xpath('//imag:Pushpins/com:Pushpin/com:Location/com:Longitude/text()' => '-118.255463').
+      with_xpath('//imag:Pushpins/com:Pushpin/com:Label/text()' => '99').
+      with_xpath('//imag:Pushpins/com:Pushpin/com:IconStyle/text()' => '2').
       with_xpath('//com:Token/text()' => token).
       with_xpath('//imag:Style/text()' => 'Road')
     
@@ -49,17 +50,17 @@ class TestVirtualEarth < Test::Unit::TestCase
                                             :layers => ['TrafficFlow'],
                                             :image_type => 'Png',
                                             :pushpins => [
-                                                           latlon(34.155217,-118.255463)
+                                                           pushpin_detail(34.155217,-118.255463, '99', '2'),
                                                           ],
                                             :style => 'Road'
                                             )
     expected_uri = "http://api.tiles.virtualearth.net/api/GetMap.ashx?c=34.113033,-11"\
-    "8.2685&ppl=34.155217,-118.255463&w=200&h=250&o=png&b=r,shading"\
-    ".hill,mkt.en-US&z=3&token={token}"
+      "8.2685&ppl=2,99,34.155217,-118.255463&w=200&h=250&o=png&b=r,shading"\
+      ".hill,mkt.en-US&z=3&token={token}"
     assert_equal expected_uri, res[:uri]
   end
 
-  def latlon(lat,lon)
-    {:latitude => lat, :longitude => lon}
+  def pushpin_detail(lat, lon, label, icon_style)
+    {:latitude => lat, :longitude => lon, :label => label, :icon_style => icon_style}
   end
 end

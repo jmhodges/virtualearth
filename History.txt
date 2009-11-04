@@ -1,4 +1,7 @@
-=== 1.0.0 / 2009-10-13
+=== 0.1.1 / 2009-11-03
+* Support for push pin labels and icon styles
+
+=== 0.1.0 / 2009-10-13
 
 * 1 major enhancement
 
