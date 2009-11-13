@@ -4,6 +4,8 @@ require 'uri'
 require 'cgi'
 
 require 'virtualearth/imagery'
+require 'virtualearth/geocode'
+
 module VirtualEarth
-  VERSION = '0.1.1'
+  VERSION = '0.1.2'
 end

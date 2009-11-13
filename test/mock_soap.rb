@@ -113,7 +113,7 @@ class MockSoap
     private
 
     def call(request)
-      Handsoap::Http::NetHttp.send_http_request(request)
+      Handsoap::Http::Drivers::NetHttpDriver.new.send_http_request(request)
     end
 
     def store(response)
