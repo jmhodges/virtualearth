@@ -7,5 +7,5 @@ require 'virtualearth/imagery'
 require 'virtualearth/geocode'
 
 module VirtualEarth
-  VERSION = '0.1.2'
+  VERSION = '0.1.3'
 end

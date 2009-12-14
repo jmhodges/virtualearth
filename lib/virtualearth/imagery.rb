@@ -26,8 +26,10 @@ module VirtualEarth
             end
 
             io.add('imag:ImageType', opts[:image_type]) if opts[:image_type]
-            io.add('imag:ZoomLevel', opts[:zoom]) if opts[:zoom]
             io.add('imag:Style', opts[:style]) if opts[:style]
+
+            # VE bug requires ZoomLevel to come after Style
+            io.add('imag:ZoomLevel', opts[:zoom]) if opts[:zoom]
             if opts[:layers]
               io.add('imag:DisplayLayers') do |dl|
                 opts[:layers].each{|layer| dl.add('arr:string', layer) }

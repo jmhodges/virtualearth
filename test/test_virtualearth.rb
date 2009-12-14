@@ -25,38 +25,37 @@ class TestVirtualEarth < Test::Unit::TestCase
 
   def test_get_map_uri
     # Token gathered from a MapPoint::Common.get_client_token call.
-    token = "-0qdmPhQUuZXB-vGj8ljhYc6QBLq3Sclyts2LwnwaTuPWgiov1Yr56sjVnzCknRNaa78G8EKVy-eXjomy-0_Cw2"
+    token = "4udsH2_UT8nFZkM-UknIDbgImuLnt_g5GPKxqrTn3q3QDiyE1vc7sufvV-fOI6z5xc--nAQo5w-JBC6wkg7Z5Q2"
     mock_soap.for('GetMapUri').
       with_xpath('//imag:Center/com:Latitude/text()' => '34.113033').
       with_xpath('//imag:Center/com:Longitude/text()' => '-118.2685').
-      with_xpath('//imag:ZoomLevel/text()' => '3').
-      with_xpath('//imag:ImageSize/com:Width/text()' => '200').
-      with_xpath('//imag:ImageSize/com:Height/text()' => '250').
+      with_xpath('//imag:ZoomLevel/text()' => '14').
+      with_xpath('//imag:ImageSize/com:Width/text()' => '600').
+      with_xpath('//imag:ImageSize/com:Height/text()' => '400').
       with_xpath('//imag:DisplayLayers/arr:string/text()' => 'TrafficFlow').
       with_xpath('//imag:ImageType/text()' => 'Png').
-      with_xpath('//imag:Pushpins/com:Pushpin/com:Location/com:Latitude/text()' => '34.155217').
-      with_xpath('//imag:Pushpins/com:Pushpin/com:Location/com:Longitude/text()' => '-118.255463').
+      with_xpath('//imag:Pushpins/com:Pushpin/com:Location/com:Latitude/text()' => '34.113033').
+      with_xpath('//imag:Pushpins/com:Pushpin/com:Location/com:Longitude/text()' => '-118.2685').
       with_xpath('//imag:Pushpins/com:Pushpin/com:Label/text()' => '99').
       with_xpath('//imag:Pushpins/com:Pushpin/com:IconStyle/text()' => '2').
       with_xpath('//com:Token/text()' => token).
-      with_xpath('//imag:Style/text()' => 'Road')
-    
+      with_xpath('//imag:Style/text()' => 'Aerial')
     res = VirtualEarth::Imagery.get_map_uri(token,
                                             :center_latitude => 34.113033,
                                             :center_longitude => -118.2685,
-                                            :zoom => 3,
-                                            :width => 200,
-                                            :height => 250,
+                                            :zoom => 14,
+                                            :width => 600,
+                                            :height => 400,
                                             :layers => ['TrafficFlow'],
                                             :image_type => 'Png',
                                             :pushpins => [
-                                                           pushpin_detail(34.155217,-118.255463, '99', '2'),
+                                                           pushpin_detail(34.113033,-118.2685, '99', '2'),
                                                           ],
-                                            :style => 'Road'
+                                            :style => 'Aerial'
                                             )
-    expected_uri = "http://api.tiles.virtualearth.net/api/GetMap.ashx?c=34.113033,-11"\
-      "8.2685&ppl=2,99,34.155217,-118.255463&w=200&h=250&o=png&b=r,shading"\
-      ".hill,mkt.en-US&z=3&token={token}"
+
+    expected_uri = "http://api.tiles.virtualearth.net/api/GetMap.ashx?c=34.113033,"\
+      "-118.2685&ppl=2,99,34.113033,-118.2685&w=600&h=400&o=png&b=a,mkt.en-US&z=14&token={token}"
     assert_equal expected_uri, res[:uri]
   end
 

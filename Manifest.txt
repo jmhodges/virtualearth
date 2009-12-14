@@ -9,5 +9,6 @@ lib/virtualearth/geocode.rb
 test/test_virtualearth.rb
 test/test_geocode.rb
 test/data/02f8899115c987b12834de361ae8d777
+test/data/2839eeb09e6728044989859b593296df
 test/data/974663aa776d82ff2b5ad3a6ac61777a
 test/data/ae2997d20d3308e04cc4c72f3d6f7ef6
